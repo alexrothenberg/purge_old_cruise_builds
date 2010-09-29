@@ -2,12 +2,14 @@
 
 require 'fileutils'
 
+## change to the directory where cruise stores the projects on your server
+CRUISE_PROJECTS_HOME = '/srv/cruise/projects'
 ## change this to keep more or fewer builds
-BUILDS_TO_KEEP = 10
+BUILDS_TO_KEEP       = 10                     
 
 def prune_all_cruise_projects
   puts "Pruning old cruise builds #{Time.now}"
-  Dir['/srv/cruise/projects/*'].each do |project|
+  Dir["#{CRUISE_PROJECTS_HOME}/*"].each do |project|
     prune_project(project)
   end
 end
@@ -16,7 +18,7 @@ end
 def prune_project(project_dir)
   sorted_builds = Dir["#{project_dir}/build-*"].sort {|a,b| File.new(a).mtime <=> File.new(b).mtime}.reverse
   most_recent_success = sorted_builds.detect {|f| f =~ /success/ }
-  return if most_recent_success.nil?
+  return if most_recent_success.nil?  # no builds in thid directory
 
   index_of_most_recent_success = sorted_builds.index(most_recent_success)
   builds_to_remove = sorted_builds[(index_of_most_recent_success+BUILDS_TO_KEEP)..sorted_builds.length] || []
