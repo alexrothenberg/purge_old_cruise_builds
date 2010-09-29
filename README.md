@@ -21,13 +21,11 @@ Change one of these options in the script to match your needs
 
 # Logic
 
-The script will 
+For each project in the cruise project directory the script will
 
-* For each project in the cruise project directory
-
-** Find the most recent successful build
-** Count backward 10 builds from there (based on the BUILDS_TO_KEEP parameter)
-** Delete all builds older than that
+* Find the most recent successful build
+* Count backward 10 builds from there (based on the BUILDS_TO_KEEP parameter)
+* Delete all builds older than that
 
 It will always keep at least 10 builds and ensure it keeps the most recent successful build.
 
