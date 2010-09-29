@@ -24,6 +24,7 @@ Change one of these options in the script to match your needs
 The script will 
 
 * For each project in the cruise project directory
+
 ** Find the most recent successful build
 ** Count backward 10 builds from there (based on the BUILDS_TO_KEEP parameter)
 ** Delete all builds older than that
