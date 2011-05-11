@@ -29,3 +29,5 @@ def prune_project(project_dir)
     puts "  #{build}"
   end
 end
+
+prune_all_cruise_projects
